@@ -10,6 +10,7 @@
 # Births & Deaths happen simultaneously
 # TICK: the descrete moment when birth and death happens
 
+import numpy as np
 
 # Python Implementation:
 def compute_gen_score(Z):
@@ -20,14 +21,14 @@ def compute_gen_score(Z):
             score[x][y] = Z[x-1][y-1] + Z[x][y-1] + Z[x+1][y-1] + \
                             Z[x-1][y] + Z[x+1][y] + \
                             Z[x-1][y+1] + Z[x][y+1] + Z[x+1][y+1]
-    
+
 #     print(score)
     return score
 
 #---------------
 def iterate(Z):
     score = compute_gen_score(Z)
-    
+
     for x in range(len(Z[0])-1):
         for y in range(len(Z)-1):
             if Z[x][y] == 1 and (score[x][y] < 2 or score[x][y] > 3):
@@ -37,9 +38,9 @@ def iterate(Z):
                 ### rebirth
                 Z[x][y] = 1
     return Z
-    
-    
-    
+
+
+
 # Numpy Implementation
 def game_of_life(Z):
     Z = np.array(Z)    #converting a list-of-list into numpy array if not already done
@@ -47,10 +48,10 @@ def game_of_life(Z):
     scores[1:-1, 1:-1] += Z[ :-2, :-2] + Z[ :-2, 1:-1] + Z[ :-2, 2: ] + \
                             Z[1:-1, :-2] +                 Z[1:-1, 2: ] + \
                             Z[2:  , :-2] + Z[2:  , 1:-1] + Z[ 2: , 2: ]
-    
+
     Z_flat = Z.ravel()
     scores_flat = scores.ravel()
-    
+
     #Death
     Rule1 = np.argwhere((Z_flat == 1) & (scores_flat < 2))
     Rule2 = np.argwhere((Z_flat == 1) & (scores_flat > 3))
@@ -58,17 +59,17 @@ def game_of_life(Z):
     Rule3 = np.argwhere((Z_flat == 1) & ((scores_flat == 2) | (scores_flat == 3)))
     #Birth or Re-birth
     Rule4 = np.argwhere((Z_flat == 0) & (scores_flat == 3))
-    
+
     # Assigning states for next geneeration
     Z_flat[Rule1] = 0
     Z_flat[Rule2] = 0
     Z_flat[Rule3] = Z_flat[Rule3]
     Z_flat[Rule4] = 1
-    
+
     Z_recovered = Z_flat.reshape(Z.shape)
     return Z_recovered
-    
-    
+
+
 def game_of_life2(Z):
     Z = np.array(Z)
     scores = np.zeros(Z.shape, np.int)
