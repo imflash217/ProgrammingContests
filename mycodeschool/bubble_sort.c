@@ -12,6 +12,10 @@ void print_array(int A[], int n)
 
 void BubbleSort(int A[], int n)
 {
+    /* 
+     *
+     *
+     */
     int *tmp = (int *)malloc(sizeof(int));
     int *flag = (int *)malloc(sizeof(int));
     *flag = 0;

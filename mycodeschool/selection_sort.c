@@ -10,7 +10,7 @@ void SelectionSort(int A[], int n)
         {
             if (A[j] < A[idx_min])
             {
-                idx_min = j;
+                idx_min = j;    // find the minimum element idx
             }
         }
         // swap the elements
