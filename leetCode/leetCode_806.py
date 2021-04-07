@@ -9,19 +9,19 @@ class Solution(object):
         """
         
         X = [string.lowercase.index(x) for x in S]
-        print X
+        print(X)
         
         Y = [widths[i] for i in X] 
-        print Y
+        print(Y)
         
         totalSum = sum(Y)
-        print totalSum
+        print(totalSum)
         
         quotient = totalSum/100
         remainder = totalSum%100
         
-        print quotient
-        print remainder
+        print(quotient)
+        print(remainder)
         
         a = 0
         b = 0
@@ -35,5 +35,9 @@ class Solution(object):
                 
             b = tempSum
                 
-        return [a+1,b]
+        return [a+1,b]              
+
+
+
+
         
