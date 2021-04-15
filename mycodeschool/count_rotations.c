@@ -1,4 +1,5 @@
 // count the number of rotations in a sorted circular array 
+// usingg binary search
 //
 #include <stdio.h>
 #include <stdlib.h>
